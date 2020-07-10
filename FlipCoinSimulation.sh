@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash 
 echo "Welcome to flip coin simulation program"
 flipCoin=$(($RANDOM % 2 + 1))
 echo $flipCoin
@@ -34,5 +34,25 @@ then
 	echo "tail won by $win points"
 else
 	echo "There is tie"
+	if [ $headCount -eq $tailCount ]
+	then
+		while true
+		do
+			result=$(($RANDOM%2+1))
+			if [ $result==1 ]
+			then
+				headCount=$(($headCount+1))
+			else
+				tailCount=$(($tailCount+1))
+			fi
+			if [ $(($headCount-$tailCount)) -eq 2 ]
+			then
+				echo "head wins by 2 and count is:" $headCount
+			elif [ $(($tailCount-$headCount)) -eq 2 ]
+			then
+				echo "tail wins by 2 and count is:" $tailCount
+			fi
+		done
+	fi
 fi
 
