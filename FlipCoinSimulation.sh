@@ -10,9 +10,7 @@ else
 fi
 headCount=0
 tailCount=0
-read -p "Enter the number of times you want to flip the coin:" n
-echo $n
-for (( i=0; i<$n; i++ ))
+while [ $headCount -ne 21 ] && [ $tailCount -ne 21 ]
 do
 	flipCoin=$(($RANDOM%2+1))
 	if [ $flipCoin -eq 1 ]
@@ -26,4 +24,15 @@ do
 done
 echo "head wins:" $headCount "times"
 echo "tail wins:" $tailCount "times"
+if [ $headCount -gt $tailCount ]
+then
+	win=$(($headCount-$tailCount))
+	echo "head won by $win points"
+elif [ $tailCount -gt $headCount ]
+then
+	win=$(($tailCount-$headCount))
+	echo "tail won by $win points"
+else
+	echo "There is tie"
+fi
 
